@@ -6,6 +6,10 @@ tbody tr:hover > td{
     background-color: lightgray;
 }
 
+table tr.active td {
+  background-color: lightblue;
+}
+
 label{
     margin-right: 10px;
 }

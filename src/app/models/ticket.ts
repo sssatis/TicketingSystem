@@ -1,16 +1,16 @@
-import { Time } from "@angular/common";
+import {Train} from "../services/train.service";
 // сутність квитка
-export class TicketModel {    
+export class TicketModel {
     public description: string = '';
-    public dateString: string = '';
-    public train:number = 0;
+
     constructor(public from: string,
                 public to: string,
                 public name: string,
                 public email: string,
                 public phone: string,
-                public time: Time,
-                public date: Date,
-                public place: number
+                public time: string,
+                public date: string,
+                public place: number,
+                public train: number,
                 ) { }
 }
