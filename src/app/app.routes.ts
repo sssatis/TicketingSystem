@@ -4,6 +4,7 @@ import { authGuard } from './_guards/auth.guard';
 import { OrderTicketsComponent } from './components/order-tickets/order-tickets.component';
 import { TicketsListComponent } from './components/tickets-list/tickets-list.component';
 import { TrainSelectComponent } from './components/train-select/train-select.component';
+import {AdminComponent} from "./components/admin/admin.component";
 
 // нашалтування маршрутизації
 export const routes: Routes = [
@@ -14,7 +15,8 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [
             { path: 'train-select', component: TrainSelectComponent },
-            { path: 'order-tickets', component: OrderTicketsComponent },
+            { path: 'admin', component: AdminComponent },
+            { path: 'order-tickets/:train', component: OrderTicketsComponent },
             { path: 'tickets-list', component: TicketsListComponent }
         ]
     },

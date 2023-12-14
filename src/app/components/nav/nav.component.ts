@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
-import { AccountService } from '../../services/accountService';
-import { BehaviorSubject } from 'rxjs';
-import { User } from '../../models/user';
-import { FormsModule } from '@angular/forms';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import {Component} from '@angular/core';
+import {AccountService} from '../../services/accountService';
+import {User} from '../../models/user';
+import {FormsModule} from '@angular/forms';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {CommonModule} from '@angular/common';
+import {Router, RouterLink} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -17,17 +16,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent {
   // об'єкт користувача реєстрації
-  model: User = new User(); 
+  model: User = new User();
 
-  ngOnInit(): void { }
-
-  constructor(public accoutnService: AccountService,  // акаунт сервіс
+  constructor(public accountService: AccountService,  // акаунт сервіс
               private router: Router,                 // сервіс навігації
               private toastr:ToastrService) { }       // сервіс вспливаючих повідомлень
 
   // функція входу в акаунт
-  login() { 
-    if(this.accoutnService.login(this.model)){
+  login() {
+    if(this.accountService.login(this.model)){
       this.router.navigateByUrl("/train-select");
       return;
     }
@@ -35,7 +32,7 @@ export class NavComponent {
   }
   //функція виходу
   logout() {
-    this.accoutnService.logout();
+    this.accountService.logout();
     this.router.navigateByUrl("");
   }
 }

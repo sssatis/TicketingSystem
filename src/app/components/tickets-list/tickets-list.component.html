@@ -2,6 +2,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Номер потяга</th>
         <th scope="col">Звідки</th>
         <th scope="col">Куди</th>
         <th scope="col">ФІО</th>
@@ -10,19 +11,26 @@
         <th scope="col">Час</th>
         <th scope="col">Дата</th>
         <th scope="col">Номер місця</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
       <tr *ngFor="let ticket of user?.tickets; let i = index">
         <th scope="row">{{i}}</th>
+        <td>{{ticket.train}}</td>
         <td>{{ticket.from}}</td>
         <td>{{ticket.to}}</td>
         <td> {{ticket.name}}</td>
         <td> {{ticket.email}}</td>
         <td> {{ticket.phone}}</td>
-        <td> {{ticket.time.hours}}:{{ticket.time.minutes}}</td>
-        <td> {{ticket.date | date:'dd/MM/yyyy'}}</td>
+        <td> {{ticket.time}}</td>
+        <td> {{ticket.date}}</td>
         <td> {{ticket.place}}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="removeTicket(ticket)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

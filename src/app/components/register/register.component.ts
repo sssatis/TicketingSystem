@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { AccountService } from '../../services/accountService';
-import { User } from '../../models/user';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {AccountService} from '../../services/accountService';
+import {User} from '../../models/user';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -13,15 +13,17 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  model:User = new User();
+  model: User = new User();
   @Output() cancelRegister = new EventEmitter();
 
-  constructor(private accountService:AccountService,
-              private toastr: ToastrService){}
+  constructor(private accountService: AccountService,
+              private toastr: ToastrService) {
+  }
+
   //реєстрація користувача в системі
-  register(){
+  register() {
     //отримаємо данні користувача і передаємо їх у сервіс реєстрації
-    if(!this.accountService.register(this.model)){
+    if (!this.accountService.register(this.model)) {
       this.toastr.error("Користувач вже зареєстрований!");
       return;
     }
@@ -29,8 +31,9 @@ export class RegisterComponent {
     this.cancel();
     this.model = new User();
   }
+
   // поівертаємося на головну сторінку
-  cancel(){
-    this.cancelRegister.emit(false);    
+  cancel() {
+    this.cancelRegister.emit(false);
   }
 }

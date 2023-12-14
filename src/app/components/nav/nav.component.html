@@ -2,24 +2,27 @@
     <div class="container">
         <a class="navbar-brand" routerLink="/" routerLinkActive="active">ЗАМОВЛЕННЯ КВИТКІВ</a>
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <ng-container *ngIf="accoutnService.currentUser$ | async">
+            <ng-container *ngIf="accountService.currentUser$ | async as user">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/train-select" routerLinkActive="active" >Замовити</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/tickets-list" routerLinkActive="active">Мої квитки</a>
                 </li>
+                <li class="nav-item" *ngIf="user.isAdmin">
+                    <a class="nav-link" routerLink="/admin" routerLinkActive="active">Адміністрування</a>
+                </li>
             </ng-container>
         </ul>
 
-        <div ngbDropdown class="dropdown" *ngIf="accoutnService.currentUser$ | async">
-            <a ngbDropdownToggle class="dropdown-toggle text-light text-decoration-none">Привіт, користувач!👋🏻</a>
+        <div ngbDropdown class="dropdown" *ngIf="accountService.currentUser$ | async as currentUser">
+            <a ngbDropdownToggle class="dropdown-toggle text-light text-decoration-none">Привіт, {{currentUser?.name}}!👋🏻</a>
             <div ngbDropdownMenu class="dropdown-menu">
-                <a ngbDropdownItem class="drowndown-item" (click)="logout()">Logout</a>
+                <a ngbDropdownItem class="drowndown-item" (click)="logout()">Вийти</a>
             </div>
         </div>
 
-        <form class="d-flex" (ngSubmit)="login()" autocomplete="off" *ngIf="!(accoutnService.currentUser$ | async)">
+        <form class="d-flex" (ngSubmit)="login()" autocomplete="off" *ngIf="!(accountService.currentUser$ | async)">
             <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text"
                 placeholder="Username">
             <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password"
