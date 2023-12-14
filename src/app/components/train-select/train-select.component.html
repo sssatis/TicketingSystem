@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <label for="train">Номер обраного потяга: </label>
+            <input type="text" id="train" [(ngModel)]="trainNum" readonly>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" (click)="next()" *ngIf="trainNum!=0">Підтвердити</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-secondary" (click)="gen()">ОНОВИТИ</button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Номер потягу</th>
+            <th scope="col">Усього місць</th>
+            <th scope="col">Вільних</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let train of trains;" (click)="selectTrain(train)">
+            <td scope="row">{{train.number}}</td>
+            <td>{{train.all}}</td>
+            <td>{{train.free}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

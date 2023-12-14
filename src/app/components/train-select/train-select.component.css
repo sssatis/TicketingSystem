@@ -1,0 +1,11 @@
+tbody tr{
+    cursor: pointer;
+}
+
+tbody tr:hover > td{
+    background-color: lightgray;
+}
+
+label{
+    margin-right: 10px;
+}
